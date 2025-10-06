@@ -1,85 +1,97 @@
-  syntax on
-  "set cin "Use C-style indentation
-  set ai  "Autoindent"
-  set expandtab
-  set tabstop=4
-  set shiftwidth=4
-  set softtabstop=4
-  set cindent
-  set wrap            " Enable word wrap
-  set listchars=eol:.,tab:>-,trail:~,extends:>,precedes:<
-  set number
-  set relativenumber
-  set scrolloff=8
-  set signcolumn=yes
-  set ignorecase
-  set smartcase
+" -----------------------------
+" Basic Settings
+" -----------------------------
+syntax on
+set number                     " Show line numbers
+set relativenumber              " Show relative line numbers
+set wrap                        " Enable word wrap
+set scrolloff=8                 " Keep 8 lines visible above/below cursor
+set signcolumn=yes              " Always show sign column
+set ruler                       " Show cursor position
+set mouse=a                     " Enable mouse support
 
-  " Search highlights settings
-  set incsearch
-  set hlsearch
-  set ignorecase
-  set smartcase
-  set showmatch
-  nnoremap <silent> <F8> :set nohls!<Bar>set hlsearch?<CR>
+" -----------------------------
+" Indentation and Tabs
+" -----------------------------
+set expandtab                   " Use spaces instead of tabs
+set tabstop=4                   " Number of spaces a <Tab> counts for
+set shiftwidth=4                " Number of spaces for each indent level
+set softtabstop=4               " Make <Tab> feel like 4 spaces
+set autoindent                  " Copy indent from current line
+set smartindent                 " Smarter autoindenting for C-like code
+set cindent                     " Use C-style indentation
 
-  " --- maximum line length
-  set textwidth=79
+" -----------------------------
+" Folding
+" -----------------------------
+set foldenable                  " Enable folding
+set foldmethod=syntax           " Use syntax-based folding
+set foldlevelstart=99           " Open all folds by default
+set foldnestmax=3               " Limit nested folds
 
-  " --- Color Theme ---
-  colorscheme desert  " Built-in. You can use 'gruvbox', 'onedark', etc.
+" Folding key mappings
+nnoremap <space> za             " Toggle fold under cursor
+nnoremap zO zR                  " Open all folds
+nnoremap zC zM                  " Close all folds
 
-  " --- Show 80 character marker ---
-  set colorcolumn=80
-  set cursorline
+" -----------------------------
+" Search Settings
+" -----------------------------
+set incsearch                   " Highlight matches while typing
+set hlsearch                    " Highlight all matches
+set ignorecase                  " Ignore case in search...
+set smartcase                   " ...unless capital letters used
+set showmatch                   " Highlight matching brackets
+nnoremap <silent> <F8> :set nohls!<Bar>set hlsearch?<CR>  " Toggle search highlight
 
-  " --- Highlight trailing whitespace and tabs ---
-  highlight ExtraWhitespace ctermbg=red guibg=red
-  match ExtraWhitespace /\s\+$\|\t/
+" -----------------------------
+" Visual Enhancements
+" -----------------------------
+set list                        " Show hidden characters
+ "  set listchars=eol:.,tab:>-,trail:~,extends:>,precedes:<
 
-  " Intendation related settings
-  set autoindent
-  set cindent
-  set ruler
-  set smartindent
+set cursorline                  " Highlight current line
+set colorcolumn=80              " Show 80-character marker
+set textwidth=79                " Set maximum line length
 
-  " --- enable mouse
-  set mouse=a
+" Highlight trailing whitespace and tabs
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\|\t/
 
-  " --- Tagbar
-  nmap <F9> :TagbarToggle<CR>
+" -----------------------------
+" Colorscheme
+" -----------------------------
+colorscheme desert              " Built-in theme (try 'gruvbox','onedark', etc.)
 
-  " --- git
-  nmap <F1> :GitBlame<CR>
-  nmap <F2> :GitFiles<CR>
+" -----------------------------
+" Git Integration
+" -----------------------------
+nmap <F1> :GitBlame<CR>         " Toggle git blame
+nmap <F2> :GitFiles<CR>         " Browse git-tracked files
 
-  " Enable folding
-  set foldenable
-  set foldmethod=syntax      " Use syntax highlighting for folds
-  set foldlevelstart=99      " Open all folds by default
-  set foldnestmax=3          " Limit nested folds
+" -----------------------------
+" Tagbar
+" -----------------------------
+nmap <F9> :TagbarToggle<CR>
 
-  " key mappings for convenience
-  nnoremap <space> za         " Toggle fold under cursor
-  nnoremap zO zR              " Open all folds
-  nnoremap zC zM              " Close all folds
+" -----------------------------
+" Filetype-specific Settings
+" -----------------------------
+autocmd FileType gitcommit setlocal colorcolumn=51,73 textwidth=72
 
-  " Git commit message formatting
-  autocmd FileType gitcommit setlocal colorcolumn=51,73 textwidth=72
+call plug#begin('~/.vim/plugged')
 
-  call plug#begin('~/.vim/plugged')
-
-  Plug 'morhetz/gruvbox'
-  Plug 'scrooloose/nerdtree'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'mattn/emmet-vim'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-surround'
-  Plug 'dense-analysis/ale'
-  Plug 'preservim/tagbar'
-  Plug 'junegunn/fzf'
-  Plug 'junegunn/fzf.vim'
-  Plug 'SirVer/ultisnips'
-  Plug 'yggdroot/indentline'
-  Plug 'darthfork/git-blame.vim'
-  call plug#end()
+Plug 'morhetz/gruvbox'
+Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'dense-analysis/ale'
+Plug 'preservim/tagbar'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'SirVer/ultisnips'
+Plug 'yggdroot/indentline'
+Plug 'darthfork/git-blame.vim'
+call plug#end()
