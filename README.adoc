@@ -8,7 +8,6 @@
 .vim/
  ├── autoload/
  ├── backup/
- ├── colors/
  └── plugged/
 
 $ mkdir -p ~/.vim ~/.vim/autoload ~/.vim/backup ~/.vim/colors ~/.vim/plugged
