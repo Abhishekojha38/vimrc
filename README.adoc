@@ -1,0 +1,40 @@
+= vimrc
+
+== Prerequisite
+
+* Begin by setting up the directory structure below in your home directory.
+
+----
+.vim/
+ ├── autoload/
+ ├── backup/
+ ├── colors/
+ └── plugged/
+
+$ mkdir -p ~/.vim ~/.vim/autoload ~/.vim/backup ~/.vim/colors ~/.vim/plugged
+
+$ touch ~/.vimrc
+----
+
+* Download the vimrc file and copy it to ~/.vimrc.
+
+== Install Plugins
+
+* We need plugin manager. To install the vim-plug plugin, run this command:
+
+----
+$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+----
+
+* Open the vimrc using vim and type :PlugInstall to download and install the
+  plugins. There are some plugins which depends on the vim version. Try to
+  resolve the version dependency if any.
+
+== Conclusion
+
+This article provides only a brief introduction to Vim customization. The .vimrc
+file offers extensive flexibility, allowing thousands of configuration
+possibilities to tailor vim to your workflow. You can even develop your own
+plugins and color schemes to extend its functionality and share them with the
+community.
