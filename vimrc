@@ -53,9 +53,16 @@
   nmap <F1> :GitBlame<CR>
   nmap <F2> :GitFiles<CR>
 
-  " Visualize tabs and newlines
-  set listchars=tab:▸\ ,eol:¬
-  set list " To enable by default
+  " Enable folding
+  set foldenable
+  set foldmethod=syntax      " Use syntax highlighting for folds
+  set foldlevelstart=99      " Open all folds by default
+  set foldnestmax=3          " Limit nested folds
+
+  " key mappings for convenience
+  nnoremap <space> za         " Toggle fold under cursor
+  nnoremap zO zR              " Open all folds
+  nnoremap zC zM              " Close all folds
 
   " Git commit message formatting
   autocmd FileType gitcommit setlocal colorcolumn=51,73 textwidth=72
@@ -75,5 +82,4 @@
   Plug 'SirVer/ultisnips'
   Plug 'yggdroot/indentline'
   Plug 'darthfork/git-blame.vim'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   call plug#end()
