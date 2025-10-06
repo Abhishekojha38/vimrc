@@ -79,6 +79,31 @@ nmap <F9> :TagbarToggle<CR>
 " -----------------------------
 autocmd FileType gitcommit setlocal colorcolumn=51,73 textwidth=72
 
+" -----------------------------
+" Ctags & Cscope Integration
+" -----------------------------
+
+" Automatically add cscope database if present
+if filereadable("cscope.out")
+    cs add cscope.out
+endif
+
+set cscopetag                    " Use cscope for tag commands
+set csto=0                       " Prefer cscope over ctags for :tag lookups
+
+" Define convenient key mappings
+nnoremap <leader>sd :cs find d <C-R>=expand("<cword>")<CR><CR>   " Find definition
+nnoremap <leader>sg :cs find g <C-R>=expand("<cword>")<CR><CR>   " Find global symbol
+nnoremap <leader>sc :cs find c <C-R>=expand("<cword>")<CR><CR>   " Find function calls
+nnoremap <leader>st :cs find t <C-R>=expand("<cword>")<CR><CR>   " Find text string
+nnoremap <leader>se :cs find e <C-R>=expand("<cword>")<CR><CR>   " Find egrep pattern
+nnoremap <leader>sf :cs find f <C-R>=expand("<cfile>")<CR><CR>   " Find file
+nnoremap <leader>si :cs find i <C-R>=expand("<cfile>")<CR><CR>   " Find includes
+
+" Tag navigation
+nnoremap <C-]> :tag <C-R>=expand("<cword>")<CR><CR>              " Jump to definition
+nnoremap <C-t> :pop<CR>                                          " Jump back
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
